@@ -1,0 +1,19 @@
+~LINE START You awake atop a thin bed of down. ~TRIGGER 1 25 The air around you is cold, ~TRIGGER 25 30 and your threadbare clothes do little to protect you from the damp chill. There is a door to your left, and your equipment is packed away in a bag to your left. Will you hasten, or take your time? ~PROMPT Hasten?
+1) Linger (hear introduction) ~SELECT 1 1
+2) Hasten (skip intro) ~SELECT 1 100
+~LINE 1 As your eyes flutter open and you regain your awareness, it all starts coming back to you. This room is a cellar, rougly fifteen meters below the ground floor of the infamous Pell d'Coeur Keep. Many adventurers have ventured here, and many have never returned. It is the final rite of passage for sorcerers, warriors, scholars, and anyone else who wishes to truly push the boundaries of mastery in their craft. The depths below the castle are unfathomable, some even say infinite. Your mission, as with every one of your fellow adventurers, is simply to return with something new- tangible, or otherwise. Be it an ancient artifact, a tome of spells long since forgotten, or simply knowledge foreign to the world above, the fortress is abound with secrets. Within the vast potential for discovery promised by the Keep, a single question has escaped magical society since time immemorial- the question of the Keep itself. It predates the modern Pantheon, and the Elder Gods have been all but silent for centuries, leaving the burden of discovery on a worldwide arhaeological effort that has been ongoing for thousands of years. THAT, is why you are really here. For the chance, however infinitesimal, that you can finally put the eons-old mystery to rest. ~PROMPT There is no time to waste. You must descend.
+1) I'm ready. ~SELECT 1 100
+~LINE 100 You stow your mattress in your bag, don your coat and staff, and step through the door. You are greeted by a great stone staircase, reaching down so far as to reduce its other end to a pool of inky black. You conjure a small fire, and prepare to descend. ~PROMPT You have been walking for about two minutes now, and some slightly haphazard scouting you performed the day previous suggests you are a little under halfway to the bottom. Your mind beings to wander.
+1) Daydream ~SELECT 1 101
+~LINE 101 You wonder about the castle. About those who have traveled here before you. Those who survived, and those who died on this very voyage. About those who may very well be on that voyage now, and those you may cross paths with. Potential friends, rivals, enemies, o ~CLEAR 0 Boom! ~CLEAR 1 BOOM! ~CLEAR 2 BOOM, BOOM, BOOM! ~PROMPT Something's happening.
+1) Snap out of it ~SELECT 1 102
+~LINE 102 dragon encounter. i need to test the story can wait.
+
+
+~END
+
+~LINE# 0 ~TRIGGER 0 15 This is a piece of text dialogue with a line separator and an one or more animation trigger of the form (tilde)TRIGGER start# end# ~TRIGGER 15 30 Triggering animations selects a range of frames ({start..end}.bmp) and you may optionally add a flag to ~CLEAR clear the display after keypress ~CLEAR ~PROMPT Pick a line to advance to!
+1) Go to line 1 ~SELECT 1 1
+2) Go to line 999 ~SELECT 2 999
+~LINE# 1 oh my lord I am in wayyy over my head with this one
+~LINE# 999 who the hell writes a whole markup language for a single text adventure project?
