@@ -91,6 +91,7 @@ class Parser:
             case "~SELECT":
                 try:
                     self._select_map[token[1]] = token[2]
+                    clear_delay(0)
                 except:
                     print("im tired of writing error messages")
                     exit()
@@ -116,6 +117,10 @@ class Parser:
                     # I'm now realizing that we only need two states.
                     # I'm keeping the match statements for testing purposes,
                     # but this will be reworked when I'm not pressed for time
+                    if token == "~PROMPT":
+                        self.current_token = ""
+                        self.token_pos = 0
+                                 
                     self._exec_for([token, line.split(" ")[pos + 1], line.split(" ")[pos + 2]])
                     
                 else:
@@ -124,8 +129,8 @@ class Parser:
 
             else:
                 if pos >= 2:
-                    if (line.split(" ")[pos - 1][0] == "~" or line.split(" ")[pos - 2][0] == "~"):
-                        if token.isdigit():
+                    if token.isnumeric():
+                        if line.split(" ")[pos - 1][0] == "~" or line.split(" ")[pos - 2][0] == "~":
                             pass
                     else:
                         self.current_token += token + " "
@@ -137,7 +142,8 @@ class Parser:
                     pass
 
             pos += 1
-            
+            self._trigger_function(self, 0, 0)
+
         return None
     
 if __name__ == "__main__":

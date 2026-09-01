@@ -1,6 +1,6 @@
 """
 SORCERER - A short work of interactive metafiction
-Elizabeth Posusta - Aug 2026
+Copyleft Elizabeth Posusta - Aug 2026 - HUMANS ONLY
 """
 
 import os, sys, termios, math
@@ -40,14 +40,17 @@ def image_prep(image_imported): # for whatever reason I can't specify PIL.Image 
         image_tty = image.resize(size)
         return image_tty, term_res[1]
 
-def print_to_tty(parser: avml.Parser, index: int, scriptindex: int):
+def print_to_tty(parser: avml.Parser, index: int):
     pixel = dict({0: "█", 1: "▓", 2: "▒", 3: "░", 4: " "})
-    fw = image_prep(Image.open(f"images/{index}.bmp"))
+    if index:
+        fw = image_prep(Image.open(f"images/{index}.bmp"))
+    else:
+        fw = image_prep(Image.open(f"images/1.bmp"))
     frame = fw[0]
     width = fw[1]
     for y in range(0, frame.height):
         for x in range(0, width):
-            if x >= width - frame.width:
+            if x >= width - frame.width and index != 0:
                 shade = frame.getpixel(tuple([x - width, y]))
                 # I am genuinely lost on why quantize() sets values to {0,1,2,3,4} instead of {0,1,2,3,4}*255/4 or whatever
                 # but this DOES work so I will not complain
@@ -61,13 +64,17 @@ def print_to_tty(parser: avml.Parser, index: int, scriptindex: int):
                     print(f"{textmap(parser.current_token, textbox_top_left).get((x, y))}", end = '')
                 else:
                     print(" ", end = '')
-        print('')
-    sleep(0.15) # Keep some semblance of a framerate
+    print('')
+    sleep(0.1) # Keep some semblance of a framerate
 
 def play_anim(parser: avml.Parser, start: int, end: int):
-    for frame in range(start, end):
-        os.system('clear')
-        print_to_tty(parser, frame, 0)
+    if start == 0 and end == 0:
+        #os.system("clear")
+        print_to_tty(parser, 0)
+    else:
+        for frame in range(start, end):
+            os.system("clear")
+            print_to_tty(parser, frame)
 
 def main() -> None:
     # play_anim(1, 30)
